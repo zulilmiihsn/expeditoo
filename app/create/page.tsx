@@ -11,6 +11,7 @@ import { MainLayout } from "@/components/main-layout"
 import { Stepper } from "@/components/stepper"
 import { PhotoDropzone } from "@/components/photo-dropzone"
 import { ArrowLeft } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function CreatePage() {
   const [currentStep, setCurrentStep] = useState(0)
@@ -45,6 +46,7 @@ export default function CreatePage() {
   })
 
   const steps = ["Item", "Pickup", "Delivery", "Price"]
+  const router = useRouter()
 
   const handleInputChange = (field: string, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -64,7 +66,7 @@ export default function CreatePage() {
 
   const handleSubmit = () => {
     console.log("Form submitted:", { ...formData, photos })
-    // Handle submission
+    router.push(`/create/success?id=${Math.floor(Math.random() * 100000)}`)
   }
 
   return (

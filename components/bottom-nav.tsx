@@ -3,7 +3,7 @@
 import type React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Search, Calendar, Plus, MessageCircle, User } from "lucide-react"
+import { Home, Calendar, Plus, MessageCircle, User } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface NavItem {
@@ -14,9 +14,9 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { href: "/home", label: "Search", icon: <Search className="w-5 h-5" /> },
+  { href: "/home", label: "Home", icon: <Home className="w-5 h-5" /> },
   { href: "/deliveries", label: "Deliveries", icon: <Calendar className="w-5 h-5" /> },
-  { href: "/create", label: "Ship", icon: <Plus className="w-5 h-5" /> },
+  { href: "/create", label: "Create", icon: <Plus className="w-5 h-5" /> },
   { href: "/messages", label: "Messages", icon: <MessageCircle className="w-5 h-5" />, badge: 3 },
   { href: "/profile", label: "Account", icon: <User className="w-5 h-5" /> },
 ]
