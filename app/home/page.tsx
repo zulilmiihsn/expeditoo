@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Search, SlidersHorizontal, MapPin, Clock } from "lucide-react"
+import { Search, SlidersHorizontal, MapPin, Clock, Map } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -56,6 +56,7 @@ function HomePageContent() {
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState("")
   const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const [showMap, setShowMap] = useState(false)
   const [filters, setFilters] = useState({
     priceRange: [0, 100],
     sizes: [] as string[],
@@ -87,6 +88,14 @@ function HomePageContent() {
               <Button
                 variant="outline"
                 size="icon"
+                className="h-12 w-12 rounded-lg bg-transparent lg:hidden"
+                onClick={() => setShowMap(!showMap)}
+              >
+                <Map className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
                 className="h-12 w-12 rounded-lg bg-transparent"
                 onClick={() => setIsFilterOpen(true)}
               >
@@ -97,7 +106,7 @@ function HomePageContent() {
         </div>
 
         <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
-          <div className="w-full lg:w-1/2 flex flex-col overflow-hidden">
+          <div className={`w-full lg:w-1/2 flex flex-col overflow-hidden ${showMap ? "hidden lg:flex" : "flex"}`}>
             <div className="px-6 py-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
               <h2 className="font-semibold text-lg">Active Auctions</h2>
               <p className="text-sm text-muted-foreground">Browse and place your bid on delivery opportunities</p>
@@ -161,7 +170,7 @@ function HomePageContent() {
             </div>
           </div>
 
-          <div className="hidden lg:block w-1/2 border-l relative bg-muted/10">
+          <div className={`w-full lg:w-1/2 border-l relative bg-muted/10 ${showMap ? "block" : "hidden lg:block"}`}>
             <div className="absolute inset-0 flex items-center justify-center">
               {/* Map placeholder with better design */}
               <div className="w-full h-full bg-gradient-to-br from-muted/20 to-muted/40 relative">
